@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.4;netstandard2.0;net451;monoandroid50;monoandroid70;xamarinios10;uap10.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
+    <Authors>Hans Bakker</Authors>
+    <Company>Hans Bakker</Company>
+    <Description>An generic input / output library with a stream parser for serial port, bluetooth and file-based input</Description>
+    <PackageTags>winrt wpf uwp xamarin gps serialport bluetooth</PackageTags>
+    <PackageId>InterfaceDevice</PackageId>
+    <Version>1.0</Version>
+    <PackageLicenseUrl>http://opensource.org/licenses/ms-pl.html</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/hanmsbakker/InterfaceDevice</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hanmsbakker/InterfaceDevice</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Copyright>Copyright © Hans Bakker 2019</Copyright>
+    <OutputPath>$(MSBuildThisFileDirectory)..\Bin\$(Configuration)</OutputPath>
+    <PackageOutputPath>$(OutDir)</PackageOutputPath>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageReleaseNotes>
+      Initial release
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.4'">
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+    <Product>InterfaceDevice - .NET Standard 1.4</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+    <Product>InterfaceDevice - .NET Standard 2.0</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net451'">
+    <DefineConstants>$(DefineConstants);NETFX</DefineConstants>
+    <Product>InterfaceDevice - .NET Framework 4.5.1</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'monoandroid50'">
+    <DefineConstants>$(DefineConstants);XAMARIN;API_LEVEL_21</DefineConstants>
+    <Product>InterfaceDevice - Android</Product>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'monoandroid70'">
+    <DefineConstants>$(DefineConstants);XAMARIN;API_LEVEL_24</DefineConstants>
+    <Product>InterfaceDevice - Android</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'xamarinios10'">
+    <DefineConstants>$(DefineConstants);XAMARIN</DefineConstants>
+    <Product>InterfaceDevice - iOS</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'uap10.0'">
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <Product>InterfaceDevice - UWP</Product>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'uap10.0'">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.1.0" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.1.0" />
+    <EmbeddedResource Include="**\*.rd.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.1.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+</Project>
